@@ -30,4 +30,30 @@ public class SimpleMenuTest {
                 .isEqualTo(menu.select("Покормить собаку").get());
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
+
+    @Test
+    public void whenSelectThenReturnSame() {
+        Menu menu = new SimpleMenu();
+        menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
+        menu.add(Menu.ROOT, "Покормить собаку", STUB_ACTION);
+        menu.add(Menu.ROOT, "Сделать задание на jobj4", STUB_ACTION);
+        menu.add("Сходить в магазин", "Купить продукты", STUB_ACTION);
+        menu.add("Купить продукты", "Купить хлеб", STUB_ACTION);
+        menu.add("Купить продукты", "Купить молоко", STUB_ACTION);
+        menu.add("Сделать задание на jobj4", "Создать программу", STUB_ACTION);
+        menu.add("Сделать задание на jobj4", "Написать тесты на программу", STUB_ACTION);
+        menu.add("Написать тесты на программу", "Сдать задание ментору", STUB_ACTION);
+        assertThat(new Menu.MenuItemInfo("Сделать задание на jobj4",
+                List.of("Создать программу", "Написать тесты на программу"), STUB_ACTION, "3."))
+                .isEqualTo(menu.select("Сделать задание на jobj4").get());
+        assertThat(new Menu.MenuItemInfo("Создать программу",
+                List.of(), STUB_ACTION, "3.1.")).
+                isEqualTo(menu.select("Создать программу").get());
+        assertThat(new Menu.MenuItemInfo("Написать тесты на программу",
+                List.of("Сдать задание ментору"), STUB_ACTION, "3.2."))
+                .isEqualTo(menu.select("Написать тесты на программу").get());
+        assertThat(new Menu.MenuItemInfo("Сдать задание ментору",
+                List.of(), STUB_ACTION, "3.2.1.")).
+                isEqualTo(menu.select("Сдать задание ментору").get());
+    }
 }
