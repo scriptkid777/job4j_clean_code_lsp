@@ -127,7 +127,6 @@ public class SimpleMenu implements Menu {
             return !stack.isEmpty();
         }
 
-
         @Override
         public ItemInfo next() {
             if (!hasNext()) {
