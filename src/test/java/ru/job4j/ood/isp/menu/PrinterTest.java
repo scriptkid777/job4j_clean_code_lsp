@@ -33,13 +33,10 @@ class PrinterTest {
         Menu menu = new SimpleMenu();
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
         menu.add(Menu.ROOT, "Покормить собаку", STUB_ACTION);
-        menu.add(Menu.ROOT, "Сделать урок на jobj4", STUB_ACTION);
+        menu.add(Menu.ROOT, "Пройти курс на jobj4", STUB_ACTION);
         menu.add("Сходить в магазин", "Купить продукты", STUB_ACTION);
         menu.add("Купить продукты", "Купить хлеб", STUB_ACTION);
         menu.add("Купить продукты", "Купить молоко", STUB_ACTION);
-        menu.add("Сделать урок на jobj4", "Создать меню", STUB_ACTION);
-        menu.add("Сделать урок на jobj4", "Написать тесты", STUB_ACTION);
-        menu.add("Написать тесты", "Написать тест на метод select()", STUB_ACTION);
         MenuPrinter printer = new Printer();
         printer.print(menu);
         String expected = "1.Сходить в магазин" + nextLine
@@ -47,10 +44,7 @@ class PrinterTest {
                 + "--------1.1.1.Купить хлеб" + nextLine
                 + "--------1.1.2.Купить молоко" + nextLine
                 + "2.Покормить собаку" + nextLine
-                + "3.Пройти курс на jobj4" + nextLine
-                + "----3.1.Сделать задание на job4j" + nextLine
-                + "----3.2.Написать тесты на задание job4j" + nextLine
-                + "--------3.2.1.Написать тест на метод select()";
+                + "3.Пройти курс на jobj4";
         assertThat(expected).isEqualTo(outputStream.toString().trim());
     }
 }
